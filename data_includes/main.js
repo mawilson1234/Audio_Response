@@ -1,4 +1,4 @@
-// This is a PCIbex implementation of a simple self-paced reading task for
+// This is a PCIbex implementation of a simple audio response task for
 // CGSC/LING 496/696 @ University of Delaware
 
 // Michael Wilson, November 2024
@@ -68,8 +68,6 @@ newTrial('demographics',
 ).setOption('countsForProgressBar', false)
 
 newTrial('instructions',
-	fullscreen(),
-	
 	newText(
 		"<p>Welcome! In this experiment, you will hear audio recordings of three people " +
 		"speaking all at once. The speakers will each say a word followed by a number. " +
@@ -143,7 +141,8 @@ newTrial('blank')
 
 newTrial('digit_recall_1',
 	newText('interact', 'Press space to play the audio.')
-		.css(centered_justified_style)
+		.center()
+		.print()
 	,
 	
 	newKey('start', ' ')
@@ -184,7 +183,8 @@ Template('stimuli.csv', currentrow =>
 		'trial',
 		
 		newText('interact', 'Press space to play the audio.')
-			.css(centered_justified_style)
+			.center()
+			.print()
 		,
 		
 		newKey('start', ' ')
