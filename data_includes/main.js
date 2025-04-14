@@ -110,13 +110,18 @@ Template('stimuli.csv', currentrow =>
 			.wait()
 		,
 		
+		getVar('RT')
+			.set(v => Date.now() - v)
+		,
+		
 		getText('interact2')
 			.remove()
 		,
 		
-		getVar('RT')
-			.set(v => Date.now() - v)
+		getAudio('audio')
+			.stop()
 		,
+		
 		
 		newText(
 			'prompt', 
