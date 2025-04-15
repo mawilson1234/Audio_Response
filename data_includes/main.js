@@ -20,7 +20,7 @@ var prompt_style = {
 	'margin-top': '3em',
 	'margin-bottom': '3em',
 	width: '30em',
-	'font-style: italic'
+	'font-style': 'italic'
 }
 
 var answer_style = {
