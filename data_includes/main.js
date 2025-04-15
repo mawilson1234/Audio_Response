@@ -18,7 +18,7 @@ var prompt_style = {
 	'text-align': 'justify', 
 	margin: '0 auto',
 	'margin-top': '3em',
-	'margin-bottom': '0.5em',
+	'margin-bottom': '3em',
 	width: '30em',
 	'font-style: italic'
 }
@@ -26,7 +26,6 @@ var prompt_style = {
 var answer_style = {
 	'text-align': 'center', 
 	margin: '0 auto', 
-	'margin-top': '2em'
 	'margin-bottom': '2em',
 	width: '30em'
 }
