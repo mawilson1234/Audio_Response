@@ -107,22 +107,22 @@ Template('stimuli.csv', currentrow =>
 			.print()
 		,
 		
-		newText(currentrow.first_answer, currentrow.first_answer)
+		newText('first_answer', currentrow.first_answer)
 			.css(answer_style)
 			.print()
 		,
 		
-		newText(currentrow.second_answer, currentrow.second_answer)
+		newText('second_answer', currentrow.second_answer)
 			.css(answer_style)
 			.print()
 		,
 		
-		newText(currentrow.third_answer, currentrow.third_answer)
+		newText('third_answer', currentrow.third_answer)
 			.css(answer_style)
 			.print()
 		,
 		
-		newText(currentrow.fourth_answer, currentrow.fourth_answer)
+		newText('fourth_answer', currentrow.fourth_answer)
 			.css(answer_style)
 			.print()
 		,
@@ -134,10 +134,10 @@ Template('stimuli.csv', currentrow =>
 		
 		newSelector('answer')
 			.add(
-				getText(currentrow.first_answer), 
-				getText(currentrow.second_answer), 
-				getText(currentrow.third_answer),
-				getText(currentrow.fourth_answer)
+				getText('first_answer'), 
+				getText("second_answer"),
+				getText("third_answer"),
+				getText("fourth_answer")
 			)
 			.shuffle()
 			.wait()
