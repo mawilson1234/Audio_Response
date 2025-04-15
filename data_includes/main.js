@@ -31,7 +31,7 @@ var answer_style = {
 }
 
 Sequence(
-	'background',
+	'demographics',
 	'instructions',
 	'preload',
 	'preloaded',
