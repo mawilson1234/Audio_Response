@@ -7,13 +7,6 @@
 PennController.ResetPrefix(null) // Shorten command names (keep this)
 DebugOff()
 
-// about half should do the digit recall task
-var digit_recall = Math.random() > 0.5 ? true : false
-var instructions = digit_recall ? 'instructions_dr' : 'instructions'
-var digit_recall_trial_1 = digit_recall ? 'digit_recall_1' : 'blank'
-var digit_recall_trial_2 = digit_recall ? 'digit_recall_2' : 'blank'
-var cognitive_load = digit_recall ? 'high' : 'low'
-
 var centered_justified_style = {
 	'text-align': 'justify', 
 	margin: '0 auto', 
@@ -29,81 +22,27 @@ var prompt_style = {
 	width: '30em'
 }
 
+var answer_style = {
+	'text-align': 'justify', 
+	margin: '0 auto', 
+	'margin-bottom': '2em',
+	width: '30em'
+}
+
 Sequence(
-	'demographics',
-	instructions,
+	'instructions',
 	'preload',
 	'preloaded',
-	digit_recall_trial_1,
 	randomize('trial'),
-	digit_recall_trial_2,
 	SendResults(),
 	'end'
 )
 
-newTrial('demographics',
-	fullscreen()
-	,
-	
-	newHtml('demographics', 'background.html')
-		.css(centered_justified_style)
-		.radioWarning("You must select an option for '%name%'.")
-		.inputWarning("You must provide an answer for '%name'.")
-		.print()
-		.log()
-	,
-	
-	newButton('Next', 'Next')
-		.css('font-family', 'Helvetica, sans-serif')
-		.css('font-size', '16px')
-		.center()
-		.print()
-		.wait(
-			getHtml('demographics')
-				.test.complete()
-				.failure(
-					getHtml('demographics').warn()
-				)
-		)
-).setOption('countsForProgressBar', false)
-
 newTrial('instructions',
 	newText(
-		"<p>Welcome! In this experiment, you will hear audio recordings of three people " +
-		"speaking all at once. The speakers will each say a word followed by a number. " +
-		"Your task is to listen for the speaker who says the word 'alpha,' and type the " +
-		"number that speaker says after saying 'alpha'.</p>" + 
-		"<p><b>You should wear headphones for this experiment.</b> If you do not have " +
-		"headphones on now, please put some on before continuing. If you do not have access " +
-		"to headphones, please close this tab, and do not participate in this experiment.</p>"
-	)
-		.css(centered_justified_style)
-		.print()		
-	,
-	
-	newButton('Click when you are ready to begin')
-		.css('font-family', 'Helvetica, sans-serif')
-		.css('font-size', '16px')
-		.center()
-		.print()
-		.wait()
-).setOption('countsForProgressBar', false)
-
-newTrial('instructions_dr',
-	fullscreen(),
-	
-	newText(
-		"<p>Welcome! In this experiment, you will be asked to complete two tasks. " +
-		"First, you will hear a speaker say a sequence of numbers. You should try your best to " +
-		"remember this sequence of numbers. Please do not write down the sequence, since part of the point " +
-		"of this experiment is to study how human memory works.</p>" +
-		"<p>After you hear the list of numbers that you should try to remember, you will do a " +
-		"second task. In this task, you will hear audio recordings of three people " +
-		"speaking all at once. The speakers will each say a word followed by a number. " +
-		"Your task is to listen for the speaker who says the word 'alpha,' and type the " +
-		"number that speaker says after saying 'alpha'.</p>" +
-		"<p>Once you have finished all trials for the second task, you will then be asked " +
-		"to recall the sequence of numbers you heard at the beginning of the experiment.</p><p>" +
+		"<p>Welcome! In this experiment, you will hear an audio recording of a word. " +
+		"After hearing a word, you will be shown four options, and you should choose " +
+		"the one that corresponds to the word you heard.</p>" + 
 		"<p><b>You should wear headphones for this experiment.</b> If you do not have " +
 		"headphones on now, please put some on before continuing. If you do not have access " +
 		"to headphones, please close this tab, and do not participate in this experiment.</p>"
@@ -137,47 +76,6 @@ newTrial('preloaded',
 		.wait()
 )
 
-newTrial('blank')
-
-newTrial('digit_recall_1',
-	newText('interact', 'Press space to play the audio.')
-		.center()
-		.print()
-	,
-	
-	newKey('start', ' ')
-		.wait()
-	,
-	
-	newAudio('audio', 'LING 696 Audio 13.mp3')
-		.once()
-		.play()
-		.wait()
-	,
-	
-	getText('interact')
-		.remove()
-	,
-	
-	newVar('RT')
-		.global()
-		.set(v => Date.now())
-	,
-	
-	newText(
-		'prompt', 
-		"Click below when you are ready to continue to the second task. Try to remember the numbers you just heard!"
-	)
-		.css(prompt_style)
-		.print()
-	,
-	
-	newButton('Next','Next')
-		.center()
-		.print()
-		.wait()
-)
-
 Template('stimuli.csv', currentrow =>
 	newTrial(
 		'trial',
@@ -201,25 +99,49 @@ Template('stimuli.csv', currentrow =>
 			.remove()
 		,
 		
-		newVar('RT')
-			.global()
-			.set(v => Date.now())
-		,
-		
 		newText(
 			'prompt', 
-			"What number did the speaker who said 'alpha' say? (Press 'enter' when you are done.)"
+			'Which word did you hear? (Click to answer.)'
 		)
 			.css(prompt_style)
 			.print()
 		,
 		
-		newTextInput('response')
-			.css(centered_justified_style)
-			.log()
-			.lines(1)
+		newText(currentrow.first_answer, currentrow.first_answer)
+			.css(answer_style)
 			.print()
+		,
+		
+		newText(currentrow.second_answer, currentrow.second_answer)
+			.css(answer_style)
+			.print()
+		,
+		
+		newText(currentrow.third_answer, currentrow.third_answer)
+			.css(answer_style)
+			.print()
+		,
+		
+		newText(currentrow.fourth_answer, currentrow.fourth_answer)
+			.css(answer_style)
+			.print()
+		,
+		
+		newVar('RT')
+			.global()
+			.set(v => Date.now())
+		,
+		
+		newSelector('answer')
+			.add(
+				getText(currentrow.first_answer), 
+				getText(currentrow.second_answer), 
+				getText(currentrow.third_answer),
+				getText(currentrow.fourth_answer)
+			)
+			.shuffle()
 			.wait()
+			.log()
 		,
 		
 		getVar('RT')
@@ -227,45 +149,13 @@ Template('stimuli.csv', currentrow =>
 	)
 		.log('item', currentrow.item)
 		.log('audio_file', currentrow.audio_file)
-		.log('target_speaker', currentrow.target_speaker)
-		.log('target_number', currentrow.target_number)
+		.log('first_answer', currentrow.first_answer)
+		.log('second_answer', currentrow.second_answer)
+		.log('third_answer', currentrow.third_answer)
+		.log('fourth_answer', currentrow.fourth_answer)
+		.log('correct_answer', currentrow.correct_answer)
 		.log('response_time', getVar('RT'))
-		.log('cognitive_load', cognitive_load)
 )
-
-newTrial(
-	'digit_recall_2',
-	
-	newVar('RT')
-		.global()
-		.set(v => Date.now())
-	,
-	
-	newText(
-		'prompt', 
-		"You have now finished with the second task. " +
-		"Below, do your best to enter the sequence of " +
-		"numbers you recall having heard at the beginning " +
-		"of the experiment. (Press 'enter' when you are done.)"
-	)
-		.css(prompt_style)
-		.print()
-	,
-	
-	newTextInput('response')
-		.css(centered_justified_style)
-		.log()
-		.lines(1)
-		.print()
-		.wait()
-	,
-	
-	getVar('RT')
-		.set(v => Date.now() - v)
-)
-	.log('response_time', getVar('RT'))
-	.log('cognitive_load', cognitive_load)
-
 
 newTrial('end',
 	exitFullscreen()
