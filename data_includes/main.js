@@ -122,7 +122,6 @@ Template('stimuli.csv', currentrow =>
 			.stop()
 		,
 		
-		
 		newText(
 			'prompt', 
 			"What word did you hear?"
@@ -137,8 +136,6 @@ Template('stimuli.csv', currentrow =>
 			.lines(1)
 			.print()
 			.wait()
-		,
-		
 	)
 		.log('item', currentrow.item)
 		.log('audio_file', currentrow.audio_file)
