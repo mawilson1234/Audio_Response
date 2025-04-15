@@ -19,12 +19,14 @@ var prompt_style = {
 	margin: '0 auto',
 	'margin-top': '3em',
 	'margin-bottom': '0.5em',
-	width: '30em'
+	width: '30em',
+	'font-style: italic'
 }
 
 var answer_style = {
-	'text-align': 'justify', 
+	'text-align': 'center', 
 	margin: '0 auto', 
+	'margin-top': '2em'
 	'margin-bottom': '2em',
 	width: '30em'
 }
