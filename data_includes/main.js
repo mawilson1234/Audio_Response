@@ -15,7 +15,7 @@ var centered_justified_style = {
 }
 
 var prompt_style = {
-	'text-align': 'justify', 
+	'text-align': 'center', 
 	margin: '0 auto',
 	'margin-top': '3em',
 	'margin-bottom': '3em',
