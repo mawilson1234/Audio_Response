@@ -135,7 +135,7 @@ Template('stimuli.csv', currentrow =>
 		
 		newSelector('answer')
 			.add(
-				getText('first_answer'), 
+				getText("first_answer"), 
 				getText("second_answer"),
 				getText("third_answer"),
 				getText("fourth_answer")
