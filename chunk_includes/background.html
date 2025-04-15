@@ -8,16 +8,32 @@
 	}
 </style>
 
-<b>Please answer the question below before beginning the experiment. This will help in interpreting the results of the experiment.</b>
+<b>Please complete this short demographic questionnaire before beginning the experiment. Please answer the questions accurately, as they will help in interpreting the results of the experiment.</b>
 
 <table class='myTable'>
 	<tbody>
 		<tr>
-			<td width="50%">Which is your dominant hand?</td>
-			<td width="50%">
-				<input name="demographics_hand" type="radio" id="left" value="left" class="obligatory"><label for="left">Left</label><br><br>
-				<input name="demographics_hand" type="radio" id="right" value="right"><label for="right">Right</label><br><br>
-	            <input name="demographics_hand" type="radio" id="ambidextrous" value="ambidextrous"><label for="ambidextrous">Ambidextrous/neither</label><br><br>
+			<td width="50%">What is your native language (i.e., the language or languages you learned first)?</td>
+			<td>
+				<textarea name="demographics_nativelanguage" class="obligatory" rows="3" type="text"></textarea>
+			</td>
+		</tr>
+		<tr>
+			<td width="50%">What is your gender?</td>
+			<td>
+				<textarea name="demographics_gender" class="obligatory" rows="1" type="text"></textarea>
+			</td>
+		</tr>
+		<tr>
+			<td width="50%">Which US state did you grow up in? (If you did not grow up in the US, you may leave this blank.)</td>
+			<td> 
+				<textarea name="demographics_USstateearly" class="obligatory" rows="1" type="number" minlength="1" min="1" max="120" maxlength="3" style="width:100%; min-width: 100%"></textarea>
+			</td>
+		</tr>
+		<tr>
+			<td width="50%">Which US state do you currently live in? (If you did not grow up in the US, you may leave this blank.)</td>
+			<td> 
+				<textarea name="demographics_USstatecurrent" class="obligatory" rows="1" type="number" minlength="1" min="1" max="120" maxlength="3" style="width:100%; min-width: 100%"></textarea>
 			</td>
 		</tr>
 	</tbody>

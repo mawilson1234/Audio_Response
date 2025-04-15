@@ -31,6 +31,7 @@ var answer_style = {
 }
 
 Sequence(
+	'background',
 	'instructions',
 	'preload',
 	'preloaded',
@@ -38,6 +39,29 @@ Sequence(
 	SendResults(),
 	'end'
 )
+
+newTrial('demographics',
+	newHtml('demographics', 'background.html')
+		.css(centered_justified_style)
+		.radioWarning("You must select an option for '%name%'.")
+		.inputWarning("You must provide an answer for '%name%'.")
+		.print()
+		.log()
+	,
+	
+	newButton('Next', 'Next')
+		.css('font-family', 'Helvetica, sans-serif')
+		.css('font-size', '16px')
+		.center()
+		.print()
+		.wait(
+			getHtml('demographics')
+				.test.complete()
+				.failure(
+					getHtml('demographics').warn()
+				)
+		)
+).setOption('countsForProgressBar', false)
 
 newTrial('instructions',
 	newText(
