@@ -8,16 +8,21 @@
 	}
 </style>
 
-<b>Please answer the question below before beginning the experiment. This will help in interpreting the results of the experiment.</b>
+<b>Please answer the questions below before beginning the experiment. Your answers will help us interpret the results of the experiment.</b>
 
 <table class='myTable'>
 	<tbody>
 		<tr>
-			<td width="50%">Which is your dominant hand?</td>
+			<td width="50%">What is your age?</td>
+			<td> 
+				<textarea name="demographics_age" class="obligatory" rows="1" type="number" minlength="1" min="1" max="120" maxlength="3" style="width:100%; min-width: 100%"></textarea>
+			</td>
+		</tr>
+		<tr>
+			<td width="50%">Have you attended college?</td>
 			<td width="50%">
-				<input name="demographics_hand" type="radio" id="left" value="left" class="obligatory"><label for="left">Left</label><br><br>
-				<input name="demographics_hand" type="radio" id="right" value="right"><label for="right">Right</label><br><br>
-	            <input name="demographics_hand" type="radio" id="ambidextrous" value="ambidextrous"><label for="ambidextrous">Ambidextrous/neither</label><br><br>
+				<input name="demographics_college" type="radio" id="yes" value="yes" class="obligatory"><label for="yes">Yes</label><br><br>
+				<input name="demographics_college" type="radio" id="no" value="no"><label for="no">No</label><br><br>
 			</td>
 		</tr>
 	</tbody>
