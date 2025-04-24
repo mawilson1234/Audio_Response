@@ -1,4 +1,3 @@
 chunk_includes/*.mp3
-preprocess.r
 chunk_includes/
 *.csv
